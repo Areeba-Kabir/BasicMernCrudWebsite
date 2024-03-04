@@ -9,6 +9,8 @@ router.route('/').get(controller.home);
 //     res.status(200).send("Welcome to login")
 // })
 
-router.get('/login',controller.login);
+// router.get('/login',controller.login);
+
+router.post('/login',controller.login);
 
 module.exports=router;
