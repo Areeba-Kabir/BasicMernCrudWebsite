@@ -1,7 +1,8 @@
 const express=require('express');
 const app=express();
 const router=require('./Router/auth-router')
-const connextdb=require('./utils/db')
+const connectdb=require('./utils/db')
+require('dotenv').config()
 
 //middleware--  now our applicationn will accept json data
 app.use(express.json())
@@ -9,14 +10,20 @@ app.use(express.json())
 // api mounting
 app.use('/api/auth/',router)
 
+const port=process.env.PORT;
 
-connextdb().then(()=>{
-    app.listen(3000,()=>{
-        console.log("app listens on port 30000");
+connectdb()
+    .then(()=>
+    {
+    app.listen(port,() =>
+    {
+        console.log(`app listens on port ${port}`);
     })
-}).catch((error)=>{
+    })
+    .catch((error) =>
+    {
     console.log(error)
-})
+    })
 
 
 
